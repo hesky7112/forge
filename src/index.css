@@ -1,0 +1,537 @@
+@import "tailwindcss";
+
+/* --------------------------------------------------
+   1. Theme Surface & Color Variables
+-------------------------------------------------- */
+
+:root, html.dark {
+  /* Surface Layers (Slate Dark) */
+  --bg-canvas: #07090e;
+  --bg-surface: #0d1117;
+  --bg-surface-elevated: #161b22;
+  --bg-surface-active: #21262d;
+
+  /* Structural Borders */
+  --border-subtle: #21262d;
+  --border-muted: #30363d;
+  --border-accent: #388bfd;
+
+  /* Typography */
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --text-muted: #484f58;
+  --text-link: #58a6ff;
+
+  /* Semantic Accents */
+  --color-git-add: #238636;
+  --color-git-delete: #da3633;
+  --color-git-modify: #d29922;
+  --color-sync-online: #3fb950;
+  --color-sync-offline: #f85149;
+  --color-blast-high: #f85149;
+  --color-blast-med: #d29922;
+  --color-blast-low: #3fb950;
+}
+
+html.oled {
+  /* Surface Layers (Pure OLED True Black) */
+  --bg-canvas: #000000;
+  --bg-surface: #000000;
+  --bg-surface-elevated: #060606;
+  --bg-surface-active: #111111;
+
+  /* OLED Structural Borders */
+  --border-subtle: #1a1a1a;
+  --border-muted: #242424;
+  --border-accent: #388bfd;
+
+  /* OLED Typography */
+  --text-primary: #ffffff;
+  --text-secondary: #9e9e9e;
+  --text-muted: #555555;
+  --text-link: #58a6ff;
+
+  /* Semantic Accents (Vivid on OLED) */
+  --color-git-add: #2ea043;
+  --color-git-delete: #f85149;
+  --color-git-modify: #e3b341;
+  --color-sync-online: #3fb950;
+  --color-sync-offline: #f85149;
+  --color-blast-high: #f85149;
+  --color-blast-med: #e3b341;
+  --color-blast-low: #3fb950;
+}
+
+html.light {
+  /* Light Mode Surface Layers */
+  --bg-canvas: #f6f8fa;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-surface-active: #eaeef2;
+
+  /* Light Structural Borders */
+  --border-subtle: #d0d7de;
+  --border-muted: #afb8c1;
+  --border-accent: #0969da;
+
+  /* Light Typography */
+  --text-primary: #1f2328;
+  --text-secondary: #57606a;
+  --text-muted: #6e7781;
+  --text-link: #0969da;
+
+  /* Semantic Telemetry Accents (Light) */
+  --color-git-add: #1a7f37;
+  --color-git-delete: #cf222e;
+  --color-git-modify: #9a6700;
+  --color-sync-online: #1a7f37;
+  --color-sync-offline: #cf222e;
+  --color-blast-high: #cf222e;
+  --color-blast-med: #9a6700;
+  --color-blast-low: #1a7f37;
+}
+
+/* --------------------------------------------------
+   2. Base Styles & Global Resets
+-------------------------------------------------- */
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+code, pre, .font-mono {
+  font-family: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Thin Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #21262d;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #30363d;
+}
+
+/* --------------------------------------------------
+   3. OLED Black Theme Overrides (`html.oled`)
+   True Pitch Black #000000 with Vivid Accents
+-------------------------------------------------- */
+
+html.oled body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Absolute Pitch Black Canvases */
+html.oled .bg-\[\#000000\],
+html.oled .bg-\[\#07090e\],
+html.oled .bg-\[\#05070a\],
+html.oled .bg-\[\#05080f\],
+html.oled .bg-\[\#0d1117\] {
+  background-color: #000000 !important;
+}
+
+/* OLED Subtle Secondary Surfaces */
+html.oled .bg-\[\#121212\],
+html.oled .bg-\[\#161b22\],
+html.oled .bg-\[\#161b22\]\/70,
+html.oled .bg-\[\#161b22\]\/50,
+html.oled .bg-\[\#161b22\]\/40,
+html.oled .bg-\[\#161b22\]\/30,
+html.oled .bg-\[\#161b22\]\/80,
+html.oled .bg-\[\#161b22\]\/95,
+html.oled .bg-\[\#161b22\]\/90,
+html.oled .bg-\[\#0d1117\]\/95 {
+  background-color: #050505 !important;
+}
+
+/* OLED Active & Accent Surfaces */
+html.oled .bg-\[\#21262d\],
+html.oled .bg-\[\#282828\],
+html.oled .bg-\[\#21262d\]\/50,
+html.oled .bg-\[\#21262d\]\/60,
+html.oled .bg-\[\#21262d\]\/40 {
+  background-color: #101010 !important;
+}
+
+/* OLED Razor Borders */
+html.oled .border-\[\#21262d\],
+html.oled .border-\[\#30363d\],
+html.oled .border-\[\#30363d\]\/60,
+html.oled .border-\[\#30363d\]\/80,
+html.oled .border-\[\#30363d\]\/50,
+html.oled .border-\[\#21262d\]\/60,
+html.oled .border-\[\#21262d\]\/50,
+html.oled .border-white\/5,
+html.oled .border-white\/10,
+html.oled .border-white\/20 {
+  border-color: #1c1c1c !important;
+}
+
+html.oled .border-\[\#da3633\]\/30,
+html.oled .border-\[\#da3633\]\/40 {
+  border-color: rgba(248, 81, 73, 0.4) !important;
+}
+
+html.oled .border-\[\#238636\]\/30,
+html.oled .border-\[\#238636\]\/40 {
+  border-color: rgba(63, 185, 80, 0.4) !important;
+}
+
+html.oled .border-\[\#d29922\]\/30,
+html.oled .border-\[\#d29922\]\/40 {
+  border-color: rgba(227, 179, 65, 0.4) !important;
+}
+
+html.oled .divide-\[\#21262d\] > :not([hidden]) ~ :not([hidden]),
+html.oled .divide-\[\#30363d\] > :not([hidden]) ~ :not([hidden]) {
+  border-color: #1c1c1c !important;
+}
+
+/* OLED Interactive Hovers */
+html.oled .hover\:bg-\[\#21262d\]:hover,
+html.oled .hover\:bg-\[\#282828\]:hover,
+html.oled .hover\:bg-\[\#21262d\]\/50:hover,
+html.oled .hover\:bg-\[\#21262d\]\/40:hover {
+  background-color: #181818 !important;
+}
+
+html.oled .hover\:bg-\[\#161b22\]:hover,
+html.oled .hover\:bg-\[\#161b22\]\/70:hover,
+html.oled .hover\:bg-\[\#161b22\]\/80:hover {
+  background-color: #0c0c0c !important;
+}
+
+html.oled .hover\:bg-\[\#30363d\]:hover {
+  background-color: #202020 !important;
+}
+
+/* OLED High Legibility Typography */
+html.oled .text-\[\#f0f6fc\],
+html.oled .text-\[\#c9d1d9\] {
+  color: #ffffff !important;
+}
+
+html.oled .text-\[\#8b949e\] {
+  color: #9e9e9e !important;
+}
+
+html.oled .text-\[\#484f58\] {
+  color: #555555 !important;
+}
+
+html.oled .text-\[\#b3b3b3\] {
+  color: #aaaaaa !important;
+}
+
+/* Form Elements in OLED */
+html.oled select,
+html.oled input,
+html.oled textarea {
+  background-color: #050505 !important;
+  color: #ffffff !important;
+  border-color: #1c1c1c !important;
+}
+
+html.oled select option {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+html.oled ::-webkit-scrollbar-thumb {
+  background: #1c1c1c;
+}
+
+html.oled ::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2a;
+}
+
+/* --------------------------------------------------
+   4. Comprehensive Light Mode Overrides (`html.light`)
+   Crisp, Legible, High-Contrast Daytime Studio
+-------------------------------------------------- */
+
+html.light body {
+  background-color: #f0f2f5;
+  color: #1f2328;
+}
+
+/* Base Canvases */
+html.light .bg-\[\#000000\] {
+  background-color: #f0f2f5 !important;
+}
+
+html.light .bg-\[\#07090e\],
+html.light .bg-\[\#05070a\],
+html.light .bg-\[\#05080f\] {
+  background-color: #f6f8fa !important;
+}
+
+/* Structural Surfaces */
+html.light .bg-\[\#0d1117\] {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-\[\#121212\] {
+  background-color: #eaeef2 !important;
+}
+
+/* Elevated Containers & Cards */
+html.light .bg-\[\#161b22\] {
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* All Opacity Variants of #161b22 */
+html.light .bg-\[\#161b22\]\/70,
+html.light .bg-\[\#161b22\]\/50,
+html.light .bg-\[\#161b22\]\/40,
+html.light .bg-\[\#161b22\]\/30,
+html.light .bg-\[\#161b22\]\/80 {
+  background-color: #f6f8fa !important;
+}
+
+html.light .bg-\[\#161b22\]\/95,
+html.light .bg-\[\#161b22\]\/90,
+html.light .bg-\[\#0d1117\]\/95 {
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Active & Subdued States */
+html.light .bg-\[\#21262d\] {
+  background-color: #eaeef2 !important;
+}
+
+html.light .bg-\[\#282828\] {
+  background-color: #e1e4e8 !important;
+}
+
+html.light .bg-\[\#21262d\]\/50,
+html.light .bg-\[\#21262d\]\/60,
+html.light .bg-\[\#21262d\]\/40 {
+  background-color: #f0f2f5 !important;
+}
+
+/* Hovers */
+html.light .hover\:bg-\[\#282828\]:hover {
+  background-color: #dce3eb !important;
+}
+
+html.light .hover\:bg-\[\#21262d\]:hover,
+html.light .hover\:bg-\[\#21262d\]\/50:hover,
+html.light .hover\:bg-\[\#21262d\]\/40:hover {
+  background-color: #dce3eb !important;
+}
+
+html.light .hover\:bg-\[\#161b22\]:hover,
+html.light .hover\:bg-\[\#161b22\]\/70:hover,
+html.light .hover\:bg-\[\#161b22\]\/80:hover {
+  background-color: #f0f2f5 !important;
+}
+
+html.light .hover\:bg-\[\#30363d\]:hover {
+  background-color: #d0d7de !important;
+}
+
+/* Borders */
+html.light .border-\[\#21262d\],
+html.light .border-\[\#30363d\],
+html.light .border-\[\#30363d\]\/60,
+html.light .border-\[\#30363d\]\/80,
+html.light .border-\[\#30363d\]\/50,
+html.light .border-\[\#21262d\]\/60,
+html.light .border-\[\#21262d\]\/50 {
+  border-color: #d0d7de !important;
+}
+
+html.light .divide-\[\#21262d\] > :not([hidden]) ~ :not([hidden]),
+html.light .divide-\[\#30363d\] > :not([hidden]) ~ :not([hidden]) {
+  border-color: #d0d7de !important;
+}
+
+html.light .border-white\/5,
+html.light .border-white\/10,
+html.light .border-white\/20 {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light .hover\:border-\[\#30363d\]:hover {
+  border-color: #afb8c1 !important;
+}
+
+/* High Contrast Typography Overrides in Light Mode */
+html.light .text-\[\#f0f6fc\],
+html.light .text-\[\#c9d1d9\] {
+  color: #1f2328 !important;
+}
+
+html.light .text-\[\#8b949e\] {
+  color: #57606a !important;
+}
+
+html.light .text-\[\#b3b3b3\] {
+  color: #4b5563 !important;
+}
+
+html.light .text-\[\#484f58\] {
+  color: #6e7781 !important;
+}
+
+/* Crisp Semantic Telemetry Accents for Light Mode */
+html.light .text-\[\#388bfd\],
+html.light .text-\[\#58a6ff\] {
+  color: #0969da !important;
+}
+
+html.light .text-\[\#3fb950\] {
+  color: #1a7f37 !important;
+}
+
+html.light .text-\[\#f85149\] {
+  color: #cf222e !important;
+}
+
+html.light .text-\[\#d29922\] {
+  color: #9a6700 !important;
+}
+
+html.light .hover\:text-white:hover {
+  color: #111827 !important;
+}
+
+html.light .placeholder-\[\#484f58\]::placeholder {
+  color: #8c959f !important;
+}
+
+/* Subtle Badges and Pills Contrast */
+html.light .bg-\[\#388bfd\]\/20,
+html.light .bg-\[\#388bfd\]\/10 {
+  background-color: #ddf4ff !important;
+}
+
+html.light .bg-\[\#238636\]\/10,
+html.light .bg-\[\#238636\]\/15,
+html.light .bg-\[\#238636\]\/20 {
+  background-color: #dafbe1 !important;
+}
+
+html.light .bg-\[\#da3633\]\/10,
+html.light .bg-\[\#da3633\]\/15,
+html.light .bg-\[\#da3633\]\/20 {
+  background-color: #ffebe9 !important;
+}
+
+html.light .bg-\[\#d29922\]\/10,
+html.light .bg-\[\#d29922\]\/15,
+html.light .bg-\[\#d29922\]\/20 {
+  background-color: #fff8c5 !important;
+}
+
+html.light .border-\[\#da3633\]\/30,
+html.light .border-\[\#da3633\]\/40 {
+  border-color: rgba(207, 34, 46, 0.3) !important;
+}
+
+html.light .border-\[\#238636\]\/30,
+html.light .border-\[\#238636\]\/40 {
+  border-color: rgba(26, 127, 55, 0.3) !important;
+}
+
+html.light .border-\[\#d29922\]\/30,
+html.light .border-\[\#d29922\]\/40 {
+  border-color: rgba(154, 103, 0, 0.3) !important;
+}
+
+/* DAG Stepper Stages Button Distinct Contrast in Light Mode */
+html.light .border-\[\#30363d\].bg-\[\#0d1117\] {
+  background-color: #f6f8fa !important;
+  border-color: #d0d7de !important;
+}
+
+html.light .border-\[\#30363d\].bg-\[\#0d1117\]:hover {
+  background-color: #ffffff !important;
+  border-color: #0969da !important;
+}
+
+html.light .border-\[\#388bfd\].bg-\[\#21262d\] {
+  background-color: #ffffff !important;
+  border-color: #0969da !important;
+  color: #0969da !important;
+  box-shadow: 0 1px 3px rgba(9, 105, 218, 0.2) !important;
+}
+
+/* Form Elements Contrast in Light Mode */
+html.light select,
+html.light input,
+html.light textarea {
+  background-color: #ffffff !important;
+  color: #1f2328 !important;
+  border-color: #d0d7de !important;
+}
+
+html.light select option {
+  background-color: #ffffff !important;
+  color: #1f2328 !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #8c959f !important;
+}
+
+html.light select:focus,
+html.light input:focus,
+html.light textarea:focus {
+  border-color: #0969da !important;
+}
+
+/* Modal Backdrops in Light Mode */
+html.light .bg-black\/75,
+html.light .bg-black\/80,
+html.light .bg-black\/60 {
+  background-color: rgba(15, 23, 42, 0.45) !important;
+}
+
+/* Light Scrollbar */
+html.light ::-webkit-scrollbar-thumb {
+  background: #d0d7de;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #afb8c1;
+}
+
+/* SVG Line and Node Adjustments */
+html.light line[stroke="#30363d"] {
+  stroke: #d0d7de !important;
+}
+
+html.light path[fill="#484f58"] {
+  fill: #8c959f !important;
+}
+
+html.light text[fill="#c9d1d9"] {
+  fill: #1f2328 !important;
+}
+
+html.light text[fill="#8b949e"] {
+  fill: #57606a !important;
+}
